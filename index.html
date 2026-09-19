@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sitara | Handmade Jewellery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fde9ef;--bg2:#fff5f8;--ink:#3a1d24;--muted:#7b5561;
+  --red:#c8102e;--red-deep:#a30c25;--btn-ink:#ffffff;--gold:#a87a24;--line:#ecbccb;
+  --hero-a:#e5c8ab;--hero-b:#c99d7b;--banner-a:#ffffff;--banner-b:#f8eef2;
+  --shadow:rgba(90,20,40,.2);--toast:#2b0f16;--toast-ink:#fbe8d0;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#24121b;--bg2:#301a25;--ink:#f9e6ec;--muted:#cfa9b7;
+    --red:#ff6b81;--red-deep:#ff8fa0;--btn-ink:#2a0c14;--gold:#e6bd6b;--line:#5c3345;
+    --hero-a:#7a5a4a;--hero-b:#4a3129;--banner-a:#3a2230;--banner-b:#2c1822;
+    --shadow:rgba(0,0,0,.55);--toast:#f9e6ec;--toast-ink:#2b0f16;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#24121b;--bg2:#301a25;--ink:#f9e6ec;--muted:#cfa9b7;
+  --red:#ff6b81;--red-deep:#ff8fa0;--btn-ink:#2a0c14;--gold:#e6bd6b;--line:#5c3345;
+  --hero-a:#7a5a4a;--hero-b:#4a3129;--banner-a:#3a2230;--banner-b:#2c1822;
+  --shadow:rgba(0,0,0,.55);--toast:#f9e6ec;--toast-ink:#2b0f16;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+body{font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.serif{font-family:'DM Serif Display',Georgia,'Times New Roman',serif;font-weight:400}
+a{color:inherit}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.center{text-align:center}
+svg{display:block}
+
+/* header */
+.site-header{position:sticky;top:0;z-index:40;background:var(--bg);border-bottom:1px solid var(--line)}
+.top{display:flex;align-items:center;justify-content:space-between;max-width:1180px;margin:0 auto;padding:10px 20px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--red)}
+.brand-word{font-family:'DM Serif Display',Georgia,serif;font-size:38px;line-height:1}
+.bag{position:relative;color:var(--red);padding:6px}
+.count{position:absolute;top:-2px;right:-4px;background:var(--red);color:var(--btn-ink);font-size:11px;font-weight:600;border-radius:999px;min-width:18px;height:18px;display:grid;place-items:center;padding:0 4px}
+.nav{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.nav a{padding:9px 0;text-align:center;text-decoration:none;font-weight:500;font-size:15px}
+.nav a:hover{color:var(--red)}
+.nav a[aria-current="page"]{color:var(--red);box-shadow:inset 0 -2px 0 var(--red)}
+
+.announce{background:#12070b;text-align:center;padding:10px 14px;font-weight:600;font-size:clamp(13px,2.6vw,18px)}
+.announce span{background:linear-gradient(90deg,#f9e29a,#ff9fb5,#b7d4ff,#f9e29a);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 7s linear infinite}
+@keyframes shimmer{to{background-position:200% 0}}
+
+/* buttons */
+.btn{display:inline-block;padding:11px 28px;font-size:14px;font-weight:500;letter-spacing:.04em;text-decoration:none;border:1px solid var(--red);color:var(--red);background:transparent;transition:background .2s,color .2s}
+.btn:hover{background:var(--red);color:var(--btn-ink)}
+.btn.solid{background:var(--red);color:var(--btn-ink)}
+.btn.solid:hover{background:var(--red-deep);border-color:var(--red-deep)}
+
+/* hero */
+.hero{position:relative;min-height:min(80vh,640px);display:grid;place-items:center;padding:56px 20px;overflow:hidden;background:linear-gradient(160deg,var(--hero-a),var(--hero-b))}
+.hero-art{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+}
+
+.hero-jewellery{
+  position:absolute;
+  object-fit:contain;
+  filter:drop-shadow(0 12px 20px rgba(0,0,0,.18));
+}
+
+.hero-left{
+  left:2%;
+  top:5%;
+  width:32%;
+  height:88%;
+  transform:rotate(-4deg);
+}
+
+.hero-right{
+  right:2%;
+  top:8%;
+  width:30%;
+  height:82%;
+  transform:rotate(4deg);
+}
+.hero-card{position:relative;background:var(--bg2);width:min(350px,88%);padding:44px 28px 38px;text-align:center;box-shadow:0 22px 60px var(--shadow)}
+.hero-card h1{color:var(--red);font-size:clamp(36px,6vw,48px);line-height:1.1;margin-bottom:14px}
+.hero-card p{font-size:14px;font-weight:500;margin-bottom:24px}
+
+.section-title{font-size:clamp(30px,5vw,44px);color:var(--red);text-align:center;line-height:1.15}
+.plain-title{font-size:clamp(28px,4.5vw,36px);text-align:center;line-height:1.15}
+
+/* new collection banner */
+.newcol{padding:52px 20px 44px;max-width:1180px;margin:0 auto}
+.banner{margin-top:22px;background:linear-gradient(120deg,var(--banner-a),var(--banner-b) 55%,var(--banner-a));display:grid;grid-template-columns:1fr 2.2fr 1fr;align-items:center;padding:36px 20px;gap:10px;border:1px solid var(--line)}
+.banner-art{height:190px}
+.banner-art svg{height:100%;width:100%}
+.banner-art.r{transform:scaleX(-1)}
+.banner-copy{text-align:center}
+.script{font-family:'Great Vibes',cursive;font-size:clamp(46px,9vw,92px);line-height:1;margin-bottom:8px}
+.gold-line{color:var(--gold);font-family:'DM Serif Display',Georgia,serif;font-size:clamp(20px,3.6vw,34px);line-height:1.2}
+.gold-sub{color:var(--gold);font-size:14px;margin-bottom:18px}
+
+/* product carousel */
+.products{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:46px 0 52px}
+.carousel{position:relative;margin-top:30px}
+.track{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px}
+.track::-webkit-scrollbar{display:none}
+.track .pcard{flex:0 0 calc((100% - 66px)/4);scroll-snap-align:start}
+.arrow{position:absolute;top:34%;z-index:2;width:38px;height:38px;border-radius:50%;background:var(--bg);border:1px solid var(--line);display:grid;place-items:center;color:var(--red);box-shadow:0 4px 14px var(--shadow)}
+.arrow.prev{left:-10px}.arrow.next{right:-10px}
+.arrow:hover{background:var(--red);color:var(--btn-ink)}
+
+.pcard{display:flex;flex-direction:column}
+.pimg{position:relative;aspect-ratio:3/4;overflow:hidden}
+.pimg>svg{width:100%;height:100%}
+
+.pimg>img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.add{position:absolute;left:10px;right:10px;bottom:10px;padding:9px;background:var(--bg2);color:var(--red);border:1px solid var(--red);font-size:13px;font-weight:500;opacity:0;transform:translateY(10px);transition:opacity .2s,transform .2s}
+.add:hover{background:var(--red);color:var(--btn-ink)}
+.pcard:hover .add,.add:focus-visible{opacity:1;transform:none}
+@media (hover:none){.add{opacity:1;transform:none}}
+.pname{font-family:'Jost',sans-serif;font-size:14px;font-weight:500;margin-top:12px;line-height:1.35}
+.price{font-size:14px;color:var(--muted)}
+
+/* promises */
+.promises{display:grid;grid-template-columns:repeat(4,1fr);max-width:1180px;margin:0 auto;padding:44px 20px}
+.promise{padding:0 18px;text-align:center}
+.promise svg{margin:0 auto 12px;color:var(--red)}
+.promise h3{font-size:19px;margin-bottom:4px}
+.promise p{font-size:14px;color:var(--muted)}
+
+/* season tiles */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+.tile{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;text-decoration:none;color:#fff}
+.tile .tileart,.art svg{position:absolute;inset:0;width:100%;height:100%}
+.tile .tileart svg{width:100%;height:100%}
+.tile span{position:absolute;left:0;right:0;bottom:0;padding:34px 16px 14px;background:linear-gradient(transparent,rgba(20,5,10,.6));font-family:'DM Serif Display',Georgia,serif;font-size:22px}
+.seasons-home{padding:14px 20px 52px;max-width:1180px;margin:0 auto}
+
+/* season backdrops */
+.sea-summer{background:linear-gradient(180deg,#ffd9a8,#ffb3a0 70%,#ff9fb0)}
+.sea-monsoon{background:linear-gradient(180deg,#8aa3b0,#33505f)}
+.sea-winter{background:radial-gradient(circle at 50% 45%,#b3243f,#5b0f24 75%)}
+.sea-mission{background:linear-gradient(150deg,#dcae8a,#c48d66)}
+.sea-vision{background:linear-gradient(150deg,#d5c2ea,#9a7bc4)}
+
+/* footer */
+footer{background:var(--bg);border-top:1px solid var(--line);margin-top:0}
+.foot-title{max-width:1180px;margin:0 auto;padding:24px 20px;font-family:'DM Serif Display',Georgia,serif;font-style:italic;color:var(--red);font-size:24px}
+.foot-line{border-top:1px solid var(--line)}
+.foot-grid{display:grid;grid-template-columns:1fr 1fr 2fr;max-width:1180px;margin:0 auto}
+.foot-grid>div{padding:22px 20px 28px;border-right:1px solid var(--line);font-size:14px}
+.foot-grid>div:last-child{border-right:0}
+.foot-grid h4{font-family:'Jost',sans-serif;font-weight:600;font-size:14px;margin-bottom:6px}
+.foot-grid p{color:var(--muted)}
+.sub-form{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.sub-form input{flex:1;min-width:150px;padding:10px 12px;border:0;border-bottom:1px solid var(--ink);background:transparent;color:var(--ink);font:inherit}
+.copy-right{text-align:center;font-size:13px;color:var(--muted);padding:16px 20px;border-top:1px solid var(--line)}
+
+/* shop */
+.crumbs{font-size:13px;color:var(--muted);padding:16px 0 4px}
+.crumbs a{text-decoration:none}.crumbs a:hover{color:var(--red)}
+.shop-layout{display:grid;grid-template-columns:230px 1fr;gap:34px;padding:8px 0 64px}
+.side h4{font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-size:19px;padding-bottom:10px;margin-bottom:12px;border-bottom:1px solid var(--line)}
+.catlist{display:flex;flex-direction:column;margin-bottom:30px}
+.catlist button{text-align:left;padding:5px 0;font-size:15px;color:var(--muted)}
+.catlist button:hover{color:var(--red)}
+.catlist button[aria-pressed="true"]{color:var(--red);text-decoration:underline;text-underline-offset:4px}
+.range{position:relative;height:28px;margin:6px 8px 0}
+.range .rail{position:absolute;left:0;right:0;top:13px;height:2px;background:var(--line)}
+.range .fill{position:absolute;top:13px;height:2px;background:var(--red)}
+.range input{position:absolute;left:-8px;width:calc(100% + 16px);top:0;height:28px;margin:0;-webkit-appearance:none;appearance:none;background:none;pointer-events:none}
+.range input::-webkit-slider-runnable-track{background:none;height:28px}
+.range input::-moz-range-track{background:none}
+.range input::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;pointer-events:auto;width:16px;height:16px;margin-top:6px;border-radius:50%;background:var(--red);border:2px solid var(--bg);box-shadow:0 0 0 1px var(--red);cursor:grab}
+.range input::-moz-range-thumb{pointer-events:auto;width:12px;height:12px;border-radius:50%;background:var(--red);border:2px solid var(--bg);box-shadow:0 0 0 1px var(--red);cursor:grab}
+.range-labels{display:flex;justify-content:space-between;font-size:14px;color:var(--muted);margin-top:4px}
+.shop-banner{position:relative;height:clamp(150px,24vw,260px);overflow:hidden;background:linear-gradient(180deg,#ffd9c6,#f9b9c8 55%,#d9bdee)}
+.shop-banner svg{position:absolute;inset:0;width:100%;height:100%}
+.shop-banner-item{
+  position:relative;
+  width:33.33%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.shop-banner-item img{
+  width:80%;
+  height:80%;
+  object-fit:contain;
+  display:block;
+}
+
+.shop-banner{
+  display:flex;
+}
+.shop-head{margin:22px 0 10px}
+.shop-head h2{font-size:30px;color:var(--red);line-height:1.2}
+.shop-head p{font-size:14px;color:var(--muted);max-width:60ch}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:14px 0 18px;font-size:14px;color:var(--muted)}
+.toolbar select{font:inherit;color:var(--ink);background:var(--bg2);border:1px solid var(--line);padding:6px 10px}
+.chip-x{border:1px solid var(--red);color:var(--red);border-radius:999px;padding:3px 12px;font-size:13px;margin-right:8px}
+.chip-x:hover{background:var(--red);color:var(--btn-ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:26px 22px}
+.empty{grid-column:1/-1;padding:40px 0;color:var(--muted)}
+
+/* seasons page */
+.page-head{text-align:center;padding:34px 20px 30px;border-bottom:1px solid var(--line)}
+.page-head .small{font-size:14px;font-family:'DM Serif Display',Georgia,serif}
+.page-head h1{font-size:clamp(38px,7vw,58px);line-height:1.1}
+.page-head p.lead{max-width:62ch;margin:10px auto 0;font-size:15px;color:var(--muted)}
+.season-row{display:grid;grid-template-columns:1fr 1fr;min-height:360px;border-bottom:1px solid var(--line)}
+.season-row.rev .art{order:2}
+.art{position:relative;min-height:300px;overflow:hidden}
+.about-jewellery{
+  width:100%;
+  height:100%;
+  min-height:300px;
+  object-fit:cover;
+  display:block;
+}
+.vision-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+
+.vision-row .copy{
+  grid-column:1;
+  grid-row:1;
+}
+
+.vision-row .art{
+  grid-column:2;
+  grid-row:1;
+}
+.copy{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 8%;background:var(--bg2)}
+.copy h3{font-size:clamp(28px,4vw,36px);color:var(--red);margin-bottom:10px;line-height:1.15}
+.copy p{font-size:15px;max-width:52ch;margin-bottom:22px}
+
+/* about */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);max-width:1180px;margin:0 auto;padding:16px 20px 56px}
+.step{padding:0 20px;text-align:center}
+.step .n{font-family:'DM Serif Display',Georgia,serif;font-size:44px;color:var(--red);line-height:1}
+.step h3{font-size:20px;margin:6px 0 4px}
+.step p{font-size:14px;color:var(--muted)}
+.craft-title{padding:44px 20px 6px}
+
+/* bag drawer */
+.scrim{position:fixed;inset:0;background:rgba(20,5,10,.5);z-index:55;opacity:0;pointer-events:none;transition:opacity .25s}
+.scrim.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(410px,100%);background:var(--bg);z-index:60;transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:-10px 0 40px var(--shadow)}
+.drawer.open{transform:none}
+.d-head{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line)}
+.d-head h2{font-size:26px;color:var(--red)}
+.d-body{flex:1;overflow:auto;padding:8px 20px}
+.crow{list-style:none;display:grid;grid-template-columns:64px 1fr auto;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.cthumb{width:64px;aspect-ratio:3/4;overflow:hidden}
+.cthumb img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+}
+.cthumb svg{width:100%;height:100%}
+.cname{font-weight:500;font-size:14px;line-height:1.3}
+.cprice{font-size:14px;color:var(--muted)}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);margin-top:6px}
+.qty button{width:28px;height:28px;font-size:16px}
+.qty button:hover{color:var(--red)}
+.qty span{min-width:26px;text-align:center;font-size:14px}
+.rm{align-self:start;font-size:22px;line-height:1;color:var(--muted);padding:0 4px}
+.rm:hover{color:var(--red)}
+.d-foot{padding:16px 20px 20px;border-top:1px solid var(--line);background:var(--bg2)}
+.ship{font-size:13px;color:var(--muted);margin-bottom:6px}
+.bar{height:4px;background:var(--line);margin-bottom:14px}
+.bar i{display:block;height:100%;background:var(--red);transition:width .3s}
+.sum{display:flex;justify-content:space-between;font-weight:500;margin-bottom:12px}
+.d-foot .btn{width:100%;text-align:center}
+.d-empty{padding:40px 0;text-align:center;color:var(--muted)}
+.d-empty .btn{margin-top:16px}
+
+/* chat */
+.chat-fab{position:fixed;right:16px;bottom:16px;z-index:50;background:var(--red);color:var(--btn-ink);padding:11px 20px;border-radius:999px;display:flex;gap:8px;align-items:center;font-weight:500;font-size:14px;box-shadow:0 8px 24px var(--shadow)}
+.chat-fab:hover{background:var(--red-deep)}
+.chat{position:fixed;right:16px;bottom:72px;z-index:50;width:min(340px,calc(100% - 32px));max-height:min(480px,68vh);background:var(--bg2);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 18px 50px var(--shadow);display:none;flex-direction:column}
+.chat.open{display:flex}
+.chat-head{background:var(--red);color:var(--btn-ink);padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+.chat-head strong{font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-size:19px}
+.chat-body{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:8px}
+.msg{max-width:86%;padding:8px 12px;border-radius:14px;font-size:14px;line-height:1.45}
+.msg.bot{background:var(--bg);border:1px solid var(--line);align-self:flex-start}
+.msg.me{background:var(--red);color:var(--btn-ink);align-self:flex-end}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 12px}
+.chips button{border:1px solid var(--red);color:var(--red);border-radius:999px;padding:4px 12px;font-size:13px}
+.chips button:hover{background:var(--red);color:var(--btn-ink)}
+.chat-input{display:flex;border-top:1px solid var(--line)}
+.chat-input input{flex:1;border:0;background:transparent;padding:12px 14px;color:var(--ink);font:inherit;font-size:14px;min-width:0}
+.chat-input button{padding:0 16px;color:var(--red);font-weight:500}
+
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);background:var(--toast);color:var(--toast-ink);padding:10px 20px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:90;max-width:calc(100% - 32px);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:900px){
+  .track .pcard{flex-basis:calc((100% - 22px)/2)}
+  .promises{grid-template-columns:repeat(2,1fr);gap:28px 0}
+  .steps{grid-template-columns:repeat(2,1fr);gap:30px 0}
+  .banner{grid-template-columns:1fr}
+  .banner-art{display:none}
+  .arrow.prev{left:-4px}.arrow.next{right:-4px}
+}
+@media (max-width:820px){
+  .shop-layout{grid-template-columns:1fr;gap:14px}
+  .catlist{flex-direction:row;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+  .catlist button{border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:14px}
+  .catlist button[aria-pressed="true"]{background:var(--red);color:var(--btn-ink);border-color:var(--red);text-decoration:none}
+  .season-row{grid-template-columns:1fr}
+  .season-row.rev .art{order:0}
+  .art{min-height:240px}
+  .tiles{grid-template-columns:1fr}
+  .tile{aspect-ratio:16/8}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .foot-grid>div:last-child{grid-column:1/-1;border-top:1px solid var(--line)}
+  .foot-grid>div:nth-child(2){border-right:0}
+}
+@media (max-width:560px){
+  .brand-word{font-size:32px}
+  .grid{grid-template-columns:repeat(2,1fr);gap:22px 14px}
+  .promises,.steps{grid-template-columns:1fr}
+  .hero{min-height:560px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<!-- shared gradients used by every illustration -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbeeb0"/><stop offset=".5" stop-color="#d9a441"/><stop offset="1" stop-color="#8f6218"/></linearGradient>
+    <linearGradient id="silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".5" stop-color="#b9bcc7"/><stop offset="1" stop-color="#6d7080"/></linearGradient>
+    <linearGradient id="terra" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e79c74"/><stop offset="1" stop-color="#a4472b"/></linearGradient>
+    <linearGradient id="shell" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff4ea"/><stop offset="1" stop-color="#f2bfa4"/></linearGradient>
+    <radialGradient id="pearl" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#f2e8e2"/><stop offset="1" stop-color="#cdbdb4"/></radialGradient>
+    <radialGradient id="ruby" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#ff9aa5"/><stop offset=".55" stop-color="#d6112e"/><stop offset="1" stop-color="#6f0616"/></radialGradient>
+    <radialGradient id="emerald" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#9af2c8"/><stop offset=".55" stop-color="#12a76a"/><stop offset="1" stop-color="#06553a"/></radialGradient>
+    <radialGradient id="turq" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#a6f5f0"/><stop offset=".55" stop-color="#1fb5ad"/><stop offset="1" stop-color="#0b6a66"/></radialGradient>
+  </defs>
+</svg>
+
+<header class="site-header">
+  <div class="top">
+    <a class="brand" href="#home" data-go="home" aria-label="Sitara, go to home">
+      <span class="brand-word">Sitara</span>
+      <svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="20" cy="20" r="18"/><circle cx="20" cy="20" r="14" stroke-dasharray="1.5 2.5"/><path d="M20 9l2.6 8.4L31 20l-8.4 2.6L20 31l-2.6-8.4L9 20l8.4-2.6z" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <button class="bag" id="bagBtn" aria-label="Open shopping bag">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="count" id="bagCount">0</span>
+    </button>
+  </div>
+  <nav class="nav" aria-label="Main">
+    <a href="#home" data-go="home">Home</a>
+    <a href="#shop" data-go="shop">Shop</a>
+    <a href="#season" data-go="season">Season</a>
+    <a href="#about" data-go="about">About</a>
+  </nav>
+</header>
+
+<div class="announce"><span>✦ New Collection every month! ✦</span></div>
+
+<!-- ============ HOME ============ -->
+<main id="page-home" class="page">
+  <section class="hero">
+    <div class="hero-art" id="heroArt">
+      <img class="hero-jewellery hero-left" src="images/boho.jpg" alt="Boho Beaded Necklace">
+      <img class="hero-jewellery hero-right" src="images/jhumka.jpg" alt="Terracotta Jhumka Earrings">
+    </div>
+    <div class="hero-card">
+      <h1>Jewellery That Tells Your Story</h1>
+      <p>Handmade jewellery, made with love</p>
+      <a class="btn" href="#shop" data-go="shop">Shop now</a>
+    </div>
+  </section>
+
+  <section class="newcol">
+    <h2 class="plain-title">New Collection of this month!</h2>
+    <div class="banner">
+      <div class="banner-art" data-art="bannerJ" aria-hidden="true"></div>
+      <div class="banner-copy">
+        <p class="script">Newly Launched</p>
+        <p class="gold-line">Terracotta Jhumkas</p>
+        <p class="gold-sub">for every occasion</p>
+        <a class="btn solid" href="#shop" data-go="shop" data-cat="Earrings">Shop earrings</a>
+      </div>
+      <div class="banner-art r" data-art="bannerJ" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="products" aria-labelledby="ourProducts">
+    <div class="wrap">
+      <h2 class="section-title" id="ourProducts">Our Products</h2>
+      <div class="carousel">
+        <button class="arrow prev" data-scroll="-1" aria-label="Previous products"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+        <div class="track" id="track" tabindex="0" aria-label="Featured products"></div>
+        <button class="arrow next" data-scroll="1" aria-label="Next products"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+      <p class="center" style="margin-top:30px"><a class="btn" href="#shop" data-go="shop">View all products</a></p>
+    </div>
+  </section>
+
+  <section class="promises" aria-label="Why shop with Sitara">
+    <div class="promise">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+      <h3>Handmade in Pune</h3><p>Every piece is shaped, strung and finished by our own artisans.</p>
+    </div>
+    <div class="promise">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+      <h3>Skin-friendly metals</h3><p>Nickel-free and lead-free, so they are kind to sensitive ears.</p>
+    </div>
+    <div class="promise">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+      <h3>Free shipping over ₹999</h3><p>Delivered across India in 3 to 7 days.</p>
+    </div>
+    <div class="promise">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>
+      <h3>Gift-ready packaging</h3><p>Every order arrives in a keepsake pouch.</p>
+    </div>
+  </section>
+</main>
+
+<!-- ============ SHOP ============ -->
+<main id="page-shop" class="page" hidden>
+  <div class="wrap">
+    <p class="crumbs"><a href="#home" data-go="home">Home</a> &gt; <span id="crumbNow">All Products</span></p>
+    <div class="shop-layout">
+      <aside class="side" aria-label="Filters">
+        <h4>Browse by</h4>
+        <div class="catlist" id="catlist"></div>
+        <h4>Filter by price</h4>
+        <div class="range">
+          <div class="rail"></div><div class="fill" id="fill"></div>
+          <input type="range" id="rmin" min="199" max="1299" step="10" value="199" aria-label="Minimum price">
+          <input type="range" id="rmax" min="199" max="1299" step="10" value="1299" aria-label="Maximum price">
+        </div>
+        <div class="range-labels"><span id="lmin">₹199</span><span id="lmax">₹1,299</span></div>
+      </aside>
+      <section>
+        <div class="shop-banner">
+        <div class="shop-banner-item">
+          <img src="images/pearl.jpg" alt="Pearl Drop Earrings">
+        </div>
+
+        <div class="shop-banner-item">
+          <img src="images/hoops.jpg" alt="Oxidised Silver Hoops">
+        </div>
+
+        <div class="shop-banner-item">
+          <img src="images/bangles.jpg" alt="Lac Bangles">
+        </div>
+      </div>
+        <div class="shop-head">
+          <h2 id="shopTitle">All Products</h2>
+          <p id="shopDesc">Every piece is made by hand in small batches, so no two are exactly alike. Pick a category or set a price range to narrow things down.</p>
+        </div>
+        <div class="toolbar">
+          <span><span id="chips"></span><span id="count">12 products</span></span>
+          <label>Sort by <select id="sort">
+            <option value="rec">Recommended</option>
+            <option value="lo">Price: low to high</option>
+            <option value="hi">Price: high to low</option>
+            <option value="az">Name: A to Z</option>
+          </select></label>
+        </div>
+        <div class="grid" id="grid"></div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<!-- ============ SEASON ============ -->
+<main id="page-season" class="page" hidden>
+  <header class="page-head">
+    <h1>Seasons</h1>
+    <p class="small">Jewellery for every season</p>
+  </header>
+  <section class="season-row">
+    <div class="art sea-summer">
+      <img class="about-jewellery" src="images/shell.jpg" alt="Seashell Pendant Necklace">
+    </div>
+    <div class="copy">
+      <h3>Summer Sparkle</h3>
+      <p>Keep your look light and bright all summer. Seashell pendants, colourful beads and dainty anklets stay comfortable in the heat and go with everything from cotton kurtas to beach dresses.</p>
+      <a class="btn solid" href="#shop" data-go="shop" data-season="summer">Shop now</a>
+    </div>
+  </section>
+  <section class="season-row rev">
+    <div class="art sea-vision">
+      <img class="about-jewellery" src="images/bangles.jpg" alt="Lac Bangles">
+    </div>
+    <div class="copy">
+      <h3>Monsoon Magic</h3>
+      <p>Rain is no reason to stop accessorising. Terracotta, cotton thread and oxidised silver don't rust or tarnish in humid weather, so you can enjoy the first showers without a worry.</p>
+      <a class="btn solid" href="#shop" data-go="shop" data-season="monsoon">Shop now</a>
+    </div>
+  </section>
+  <section class="season-row">
+    <div class="art sea-winter">
+      <img class="about-jewellery" src="images/choker.jpg" alt="Kundan Choker Set">
+    </div>
+    <div class="copy">
+      <h3>Festive Winter</h3>
+      <p>Wedding and festival season calls for shine. Kundan chokers, lac bangles and pearl maang tikkas add a royal touch to sarees and lehengas, from Diwali to New Year.</p>
+      <a class="btn solid" href="#shop" data-go="shop" data-season="winter">Shop now</a>
+    </div>
+  </section>
+</main>
+
+<!-- ============ ABOUT ============ -->
+<main id="page-about" class="page" hidden>
+  <header class="page-head">
+    <p class="small">The Full Story</p>
+    <h1>About</h1>
+    <p class="lead">Sitara makes handmade jewellery inspired by India's craft traditions. Each piece is designed in small batches with skin-friendly metals, natural beads and hand-shaped terracotta. We work with local artisans and pack every order in recycled paper.</p>
+  </header>
+  <section class="season-row">
+    <img class="about-jewellery" src="images/ring.jpg" alt="Emerald Statement Ring">
+    <div class="copy">
+      <h3>Mission</h3>
+      <p>To make everyday style feel personal. We craft jewellery that is affordable, skin-friendly and made to be worn daily, and we pay our artisans fairly for every piece they finish.</p>
+    </div>
+  </section>
+  <section class="season-row vision-row">
+    <img class="about-jewellery" src="images/bangles.jpg" alt="Lac Bangles">
+    <div class="copy">
+      <h3>Vision</h3>
+      <p>To become the most loved handmade jewellery brand in India: one that keeps traditional crafts alive, chooses sustainable materials and makes every customer feel that a piece was made just for them.</p>
+    </div>
+  </section>
+  <h2 class="section-title craft-title">How a piece is made</h2>
+  <section class="steps" aria-label="Our making process">
+    <div class="step"><div class="n">1</div><h3>Sketch</h3><p>Every design starts as a pencil drawing in our Pune studio.</p></div>
+    <div class="step"><div class="n">2</div><h3>Source</h3><p>We choose natural beads, clay and nickel-free metals from local suppliers.</p></div>
+    <div class="step"><div class="n">3</div><h3>Shape</h3><p>Artisans shape, bake, string and polish each piece by hand.</p></div>
+    <div class="step"><div class="n">4</div><h3>Pack</h3><p>Each order is checked, then wrapped in recycled paper and a keepsake pouch.</p></div>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-line"></div>
+  <p class="foot-title">Sitara Handmade Jewellery Pvt Ltd, Pune 411001</p>
+  <div class="foot-line"></div>
+  <div class="foot-grid">
+    <div><h4>Contact us</h4><p>+91 98765 43210</p><p>hello@sitarajewels.in</p></div>
+    <div><h4>Studio address</h4><p>Shop 12, Laxmi Road</p><p>Budhwar Peth, Pune 411002</p></div>
+    <div>
+      <h4>Stay connected with Sitara</h4>
+      <form class="sub-form" id="subForm">
+        <input type="email" id="subEmail" placeholder="Your email address" aria-label="Email address" required>
+        <button class="btn solid" type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <p class="copy-right">©Sitara</p>
+</footer>
+
+<!-- bag drawer -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Shopping bag">
+  <div class="d-head"><h2>Your bag</h2><button id="closeBag" aria-label="Close bag" style="font-size:28px;line-height:1;padding:0 6px">×</button></div>
+  <div class="d-body" id="dBody"></div>
+  <div class="d-foot" id="dFoot"></div>
+</aside>
+
+<!-- chat -->
+<button class="chat-fab" id="chatFab" aria-expanded="false" aria-controls="chat">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+  Let's chat!
+</button>
+<section class="chat" id="chat" aria-label="Chat with Sitara">
+  <div class="chat-head"><strong>Chat with Sitara</strong><button id="chatClose" aria-label="Close chat" style="font-size:24px;line-height:1">×</button></div>
+  <div class="chat-body" id="chatBody"><div class="msg bot">Hi! I'm here to help. What would you like to know?</div></div>
+  <div class="chips" id="chatChips">
+    <button>Custom orders</button><button>Shipping &amp; returns</button><button>Jewellery care</button><button>Track my order</button>
+  </div>
+  <div class="chat-input"><input id="chatText" placeholder="Type a message" aria-label="Type a message"><button id="chatSend">Send</button></div>
+</section>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(()=>{
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const inr=n=>'₹'+n.toLocaleString('en-IN');
+const f=n=>Math.round(n*10)/10;
+
+/* ---------- illustration helpers ---------- */
+const G='#c9973a';
+let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const Q=(a,c,b,t)=>[(1-t)*(1-t)*a[0]+2*(1-t)*t*c[0]+t*t*b[0],(1-t)*(1-t)*a[1]+2*(1-t)*t*c[1]+t*t*b[1]];
+const spark=(x,y,s=8,o=.9)=>`<path d="M${x} ${y-s}Q${x} ${y} ${x+s} ${y}Q${x} ${y} ${x} ${y+s}Q${x} ${y} ${x-s} ${y}Q${x} ${y} ${x} ${y-s}Z" fill="#fff" opacity="${o}"/>`;
+const bead=(x,y,r,fill)=>`<circle cx="${f(x)}" cy="${f(y)}" r="${r}" fill="${fill}"/><circle cx="${f(x-r*.3)}" cy="${f(y-r*.32)}" r="${f(r*.3)}" fill="#fff" opacity=".55"/>`;
+const star=(x,y,R,fill)=>{const p=[];for(let i=0;i<10;i++){const r=i%2?R*.45:R,a=-Math.PI/2+i*Math.PI/5;p.push(f(x+r*Math.cos(a))+','+f(y+r*Math.sin(a)));}return `<polygon points="${p.join(' ')}" fill="${fill}"/>`;};
+const S=(vb,inner,par='xMidYMid slice')=>`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb}" preserveAspectRatio="${par}" aria-hidden="true" focusable="false">${inner}</svg>`;
+const frame=i=>S('0 0 300 400',`<circle cx="150" cy="205" r="128" fill="#fff" opacity=".14"/>${spark(46,72,9)}${spark(254,326,7,.8)}${spark(240,86,5,.7)}${i}`,'xMidYMid meet');
+
+/* ---------- jewellery pieces (300 x 400 canvas) ---------- */
+const jhumka=x=>`
+<circle cx="${x}" cy="100" r="8" fill="url(#gold)"/>
+<line x1="${x}" y1="106" x2="${x}" y2="124" stroke="${G}" stroke-width="4"/>
+<path d="M${x-36} 180Q${x-36} 124 ${x} 124Q${x+36} 124 ${x+36} 180Z" fill="url(#terra)" stroke="${G}" stroke-width="2.5"/>
+<circle cx="${x}" cy="146" r="4.5" fill="url(#gold)"/><circle cx="${x-15}" cy="160" r="3.5" fill="url(#gold)"/><circle cx="${x+15}" cy="160" r="3.5" fill="url(#gold)"/><circle cx="${x}" cy="167" r="3" fill="url(#gold)"/>
+<rect x="${x-39}" y="178" width="78" height="9" rx="4.5" fill="url(#gold)"/>
+${[0,1,2,3,4,5,6].map(i=>{const bx=x-30+i*10;return `<line x1="${bx}" y1="187" x2="${bx}" y2="199" stroke="${G}" stroke-width="1.4"/>${bead(bx,203,4.6,'url(#gold)')}`}).join('')}`;
+
+const pearlDrop=x=>`
+<circle cx="${x}" cy="108" r="8" fill="url(#gold)"/>
+<line x1="${x}" y1="114" x2="${x}" y2="150" stroke="${G}" stroke-width="2.5"/>
+${bead(x,152,11,'url(#pearl)')}
+<path d="M${x-8} 166h16l-4 11h-8z" fill="url(#gold)"/>
+${bead(x,208,28,'url(#pearl)')}`;
+
+const hoop=x=>`
+<circle cx="${x}" cy="200" r="46" fill="none" stroke="url(#silver)" stroke-width="9"/>
+<circle cx="${x}" cy="200" r="46" fill="none" stroke="#4d5060" stroke-width="1.6" stroke-dasharray="1 8" stroke-linecap="round" opacity=".8"/>
+<rect x="${x-6}" y="140" width="12" height="14" rx="4" fill="url(#silver)"/>
+<line x1="${x}" y1="246" x2="${x}" y2="263" stroke="#8b8ea0" stroke-width="2"/>
+${bead(x,273,9,'url(#turq)')}`;
+
+const beadedNeck=()=>{const a=[40,110],c=[150,338],b=[260,110],cols=['url(#terra)','#f5e6d3','url(#gold)','url(#turq)'];
+  let s=`<path d="M${a} Q${c} ${b}" fill="none" stroke="#7a5a2a" stroke-width="1.5" opacity=".5"/>`;
+  for(let i=0;i<=20;i++){const t=i/20,[x,y]=Q(a,c,b,t);s+=bead(x,y,5.5+4.5*Math.sin(Math.PI*t),cols[i%4]);}
+  return s+`<line x1="150" y1="234" x2="150" y2="248" stroke="${G}" stroke-width="2"/><path d="M150 246C126 268 130 304 150 312C170 304 174 268 150 246Z" fill="url(#terra)" stroke="${G}" stroke-width="2.5"/><circle cx="150" cy="282" r="6" fill="url(#gold)"/>`;};
+
+const choker=()=>{const a=[38,112],c=[150,252],b=[262,112],a2=[50,132],c2=[150,268],b2=[250,132];
+  let s=`<path d="M${a} Q${c} ${b}" fill="none" stroke="url(#gold)" stroke-width="10" stroke-linecap="round"/><path d="M${a2} Q${c2} ${b2}" fill="none" stroke="${G}" stroke-width="2.5" stroke-dasharray="3 5"/>`;
+  for(let i=1;i<10;i++){if(i===5)continue;let [x,y]=Q(a2,c2,b2,i/10);s+=`<line x1="${f(x)}" y1="${f(y)}" x2="${f(x)}" y2="${f(y+9)}" stroke="${G}" stroke-width="1.5"/>`+bead(x,y+13,4.4,'url(#pearl)');
+    [x,y]=Q(a,c,b,i/10);s+=bead(x,y,i%2?5.4:4,i%2?'url(#ruby)':'url(#pearl)');}
+  s+=`<circle cx="150" cy="184" r="28" fill="url(#gold)"/>`;
+  for(let k=0;k<12;k++){const ang=k*Math.PI/6;s+=bead(150+23*Math.cos(ang),184+23*Math.sin(ang),3.6,'url(#pearl)');}
+  return s+`<circle cx="150" cy="184" r="16" fill="#6f0616"/>${bead(150,184,12.5,'url(#ruby)')}<path d="M150 214Q131 244 150 276Q169 244 150 214Z" fill="url(#ruby)" stroke="${G}" stroke-width="3"/>`;};
+
+const shellNeck=()=>{const a=[50,92],c=[150,262],b=[250,92];
+  let s=`<path d="M${a} Q${c} ${b}" fill="none" stroke="url(#gold)" stroke-width="2.6"/>`;
+  for(let i=1;i<10;i++){if(i===5)continue;const [x,y]=Q(a,c,b,i/10);s+=bead(x,y,i%2?3.6:2.6,i%2?'url(#pearl)':'url(#gold)');}
+  const ribs=[[104,240],[111,208],[126,188],[150,180],[174,188],[189,208],[196,240]];
+  return s+`<circle cx="150" cy="172" r="6" fill="none" stroke="${G}" stroke-width="2.6"/><path d="M150 304L104 240Q96 196 128 186Q150 178 172 186Q204 196 196 240Z" fill="url(#shell)" stroke="#e5a98a" stroke-width="2"/>${ribs.map(([x,y])=>`<line x1="150" y1="304" x2="${x}" y2="${y}" stroke="#e0a184" stroke-width="1.4" opacity=".8"/>`).join('')}`;};
+
+const charmBrac=()=>{const cx=150,cy=190,r=90;
+  let s=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="url(#gold)" stroke-width="7" stroke-dasharray="13 4"/><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#fff" stroke-width="1.4" stroke-dasharray="13 4" opacity=".35"/><circle cx="150" cy="${cy-r}" r="9" fill="none" stroke="url(#gold)" stroke-width="4"/>`;
+  [[30,'coin'],[60,'star'],[90,'heart'],[120,'pearl'],[150,'turq']].forEach(([d,k])=>{
+    const a=d*Math.PI/180,bx=cx+r*Math.cos(a),by=cy+r*Math.sin(a),x=f(cx+(r+24)*Math.cos(a)),y=f(cy+(r+24)*Math.sin(a));
+    s+=`<line x1="${f(bx)}" y1="${f(by)}" x2="${x}" y2="${y}" stroke="${G}" stroke-width="2"/>`;
+    s+=k==='coin'?`<circle cx="${x}" cy="${y}" r="10" fill="url(#gold)"/><circle cx="${x}" cy="${y}" r="6" fill="none" stroke="#8f6218" stroke-width="1.2"/>`
+      :k==='star'?star(x,y,13,'url(#gold)')
+      :k==='heart'?`<path d="M${x} ${y+13}C${x-22} ${y-2} ${x-12} ${y-18} ${x} ${y-7}C${x+12} ${y-18} ${x+22} ${y-2} ${x} ${y+13}Z" fill="url(#ruby)"/>`
+      :k==='pearl'?bead(x,y,9,'url(#pearl)'):bead(x,y,8,'url(#turq)');});
+  return s;};
+
+const bangles=()=>{const cols=['#c8102e','#12946a','#e0508a','#c8102e','#12946a','#e0508a'];let s='<ellipse cx="150" cy="350" rx="92" ry="10" fill="#000" opacity=".1"/>';
+  for(let i=0;i<6;i++){const y=300-i*32;s+=`<ellipse cx="150" cy="${y}" rx="90" ry="30" fill="none" stroke="${cols[i]}" stroke-width="14"/><ellipse cx="150" cy="${y}" rx="90" ry="30" fill="none" stroke="url(#gold)" stroke-width="2.4"/><ellipse cx="150" cy="${y}" rx="90" ry="30" fill="none" stroke="#fff" stroke-width="2.2" stroke-dasharray="1 9" stroke-linecap="round" opacity=".85"/>`;}
+  return s;};
+
+const macrame=()=>{const cs=['#c8642f','#f6e7d0','#0f8a86'];let s='';
+  [188,199,210].forEach((y,k)=>{s+=`<line x1="60" y1="${y}" x2="26" y2="${y+(k-1)*8}" stroke="#c8642f" stroke-width="2.4" stroke-linecap="round"/><line x1="240" y1="${y}" x2="274" y2="${y+(k-1)*8}" stroke="#c8642f" stroke-width="2.4" stroke-linecap="round"/>`+bead(24,y+(k-1)*8,5,'#b98a56')+bead(276,y+(k-1)*8,5,'#b98a56');});
+  s+=`<rect x="60" y="172" width="180" height="54" rx="7" fill="#f6e7d0" stroke="#d9c3a5" stroke-width="1.5"/>`;
+  for(let i=0;i<9;i++){const x=70+i*20;s+=`<polygon points="${x},176 ${x+10},188 ${x},200 ${x-10},188" fill="${cs[i%3]}"/>`;}
+  for(let i=0;i<8;i++){const x=80+i*20;s+=`<polygon points="${x},198 ${x+10},210 ${x},222 ${x-10},210" fill="${cs[(i+1)%3]}"/>`;}
+  return s;};
+
+const ring=(gem)=>`
+<ellipse cx="150" cy="250" rx="58" ry="66" fill="none" stroke="url(#gold)" stroke-width="13"/>
+<ellipse cx="150" cy="250" rx="58" ry="66" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="70 500" opacity=".5"/>
+<path d="M126 188L174 188L166 210L134 210Z" fill="url(#gold)"/>
+<polygon points="132,146 168,146 182,158 182,180 168,192 132,192 118,180 118,158" fill="${gem}" stroke="${G}" stroke-width="3"/>
+<polygon points="137,154 163,154 174,163 174,175 163,184 137,184 126,175 126,163" fill="none" stroke="#fff" stroke-width="1.4" opacity=".6"/>
+<polygon points="132,146 150,146 138,158 118,158" fill="#fff" opacity=".28"/>
+${spark(196,140,9,.9)}${spark(102,132,6,.8)}`;
+
+const anklet=()=>{const cx=150,cy=190,rx=104,ry=74;
+  let s=`<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="none" stroke="url(#silver)" stroke-width="5" stroke-dasharray="10 4"/><circle cx="150" cy="${cy-ry}" r="8" fill="none" stroke="url(#gold)" stroke-width="3.5"/>`;
+  for(let i=0;i<10;i++){const a=(22.5+15*i)*Math.PI/180,x=f(cx+rx*Math.cos(a)),y=f(cy+ry*Math.sin(a));
+    s+=`<line x1="${x}" y1="${y}" x2="${x}" y2="${f(y+10)}" stroke="#8b8ea0" stroke-width="1.6"/><circle cx="${x}" cy="${f(y+19)}" r="9.5" fill="url(#silver)" stroke="#7b7e90" stroke-width="1"/><path d="M${f(x-5)} ${f(y+21)}h10" stroke="#5d6072" stroke-width="1.6"/><circle cx="${x}" cy="${f(y+25)}" r="1.8" fill="#5d6072"/>`;}
+  return s;};
+
+const tikka=()=>{let s='';
+  [[[36,142],[90,66],[150,104]],[[264,142],[210,66],[150,104]]].forEach(([a,c,b])=>{for(let i=0;i<=9;i++){const [x,y]=Q(a,c,b,i/9);s+=bead(x,y,3.6,'url(#gold)');}});
+  [112,122,132,142].forEach(y=>{s+=bead(150,y,3.2,'url(#gold)');});
+  s+=bead(150,102,7,'url(#gold)')+`<circle cx="150" cy="186" r="33" fill="url(#gold)"/>`;
+  for(let k=0;k<10;k++){const ang=k*Math.PI/5;s+=bead(150+26*Math.cos(ang),186+26*Math.sin(ang),4.4,'url(#pearl)');}
+  s+=`<circle cx="150" cy="186" r="17" fill="#6f0616"/>${bead(150,186,13,'url(#ruby)')}`;
+  s+=`<path d="M150 222Q136 244 150 264Q164 244 150 222Z" fill="url(#ruby)" stroke="${G}" stroke-width="2.5"/>`;
+  [[128,246],[172,246]].forEach(([x,y])=>{s+=`<line x1="${x}" y1="214" x2="${x}" y2="${y}" stroke="${G}" stroke-width="1.6"/>`+bead(x,y+5,5.5,'url(#pearl)');});
+  return s;};
+
+const A={
+  jhumka:()=>frame(jhumka(100)+jhumka(200)),
+  pearl:()=>frame(pearlDrop(100)+pearlDrop(200)),
+  hoops:()=>frame(hoop(100)+hoop(200)),
+  boho:()=>frame(beadedNeck()),
+  choker:()=>frame(choker()),
+  shell:()=>frame(shellNeck()),
+  charm:()=>frame(charmBrac()),
+  bangles:()=>frame(bangles()),
+  macrame:()=>frame(macrame()),
+  ring:()=>frame(ring('url(#emerald)')),
+  anklet:()=>frame(anklet()),
+  tikka:()=>frame(tikka())
+};
+
+/* ---------- scenic art ---------- */
+const rain=(()=>{let s='';seed=7;for(let i=0;i<48;i++){const x=rnd()*640-20,y=rnd()*420,l=20+rnd()*18;s+=`<line x1="${f(x)}" y1="${f(y)}" x2="${f(x-l*.3)}" y2="${f(y+l)}" stroke="#e3f0f5" stroke-width="1.6" stroke-linecap="round" opacity="${f(.25+rnd()*.35)}"/>`;}return s;})();
+const stars=(()=>{let s='';seed=21;for(let i=0;i<26;i++){s+=spark(f(rnd()*600),f(rnd()*440),f(4+rnd()*8),f(.35+rnd()*.5)).replace('#fff','#ffe2a0');}return s;})();
+
+const SCENE={
+  summer:()=>S('0 0 600 440',`<circle cx="452" cy="126" r="96" fill="#fff3c4" opacity=".35"/><circle cx="452" cy="126" r="62" fill="#fff3c4"/>
+    <path d="M0 318Q75 292 150 318T300 318T450 318T600 318V440H0Z" fill="#54c1ba"/><path d="M0 352Q75 326 150 352T300 352T450 352T600 352V440H0Z" fill="#2fa39c" opacity=".9"/><path d="M0 396Q150 366 300 392T600 384V440H0Z" fill="#f3d9a8"/>
+    <g transform="translate(150,6)">${shellNeck()}</g>${spark(110,90,12)}${spark(520,260,9)}${spark(70,240,7,.8)}`),
+  monsoon:()=>S('0 0 600 440',`<ellipse cx="150" cy="40" rx="170" ry="52" fill="#c9d8df" opacity=".55"/><ellipse cx="430" cy="24" rx="190" ry="50" fill="#d8e5ea" opacity=".5"/>${rain}<g transform="translate(166,10) scale(1.25)">${hoop(50)}${hoop(160)}</g>`),
+  winter:()=>S('0 0 600 440',`<circle cx="300" cy="215" r="200" fill="#ffd27a" opacity=".12"/><circle cx="300" cy="215" r="140" fill="#ffd27a" opacity=".14"/>${stars}<g transform="translate(105,-24) scale(1.3)">${choker()}</g>`),
+  mission:()=>S('0 0 600 440',`<path d="M60 300C120 210 190 330 270 250S420 140 540 220C560 300 470 380 380 360S150 400 60 300Z" fill="#fbeee1" opacity=".75"/>${bead(120,110,14,'url(#terra)')}${bead(96,150,9,'url(#turq)')}${bead(500,90,12,'url(#gold)')}${bead(530,140,8,'url(#pearl)')}${bead(470,385,13,'url(#turq)')}${bead(90,365,10,'url(#gold)')}<g transform="translate(150,20)">${ring('url(#emerald)')}</g>`),
+  vision:()=>S('0 0 600 440',`<path d="M420 440C400 300 480 200 580 180C590 300 520 400 420 440Z" fill="#7d5aa6" opacity=".55"/><path d="M20 440C40 330 110 270 200 260C190 350 120 420 20 440Z" fill="#7d5aa6" opacity=".45"/><g transform="translate(150,10)">${bangles()}</g>${spark(120,100,12)}${spark(500,120,9)}${spark(470,330,7,.8)}`),
+  shopBanner:()=>S('0 0 900 300',`<ellipse cx="180" cy="60" rx="220" ry="34" fill="#fff" opacity=".28"/><ellipse cx="700" cy="250" rx="260" ry="40" fill="#fff" opacity=".22"/><g transform="translate(40,-30) scale(.95)">${pearlDrop(80)}${pearlDrop(170)}</g><g transform="translate(330,-20) scale(.9)">${hoop(50)}${hoop(160)}</g><g transform="translate(570,-40) scale(.9)">${bangles()}</g>${spark(300,70,12)}${spark(560,250,9)}${spark(860,60,10)}`),
+  bannerJ:()=>S('96 84 108 132',jhumka(150),'xMidYMid meet')
+};
+
+const heroInner=()=>{
+  let s=`<circle cx="200" cy="470" r="280" fill="#fff" opacity=".1"/><circle cx="1010" cy="170" r="260" fill="#fff" opacity=".1"/><circle cx="1120" cy="570" r="150" fill="#fff" opacity=".08"/><circle cx="90" cy="120" r="90" fill="#fff" opacity=".08"/>`;
+  const a=[10,-10],c=[210,570],b=[410,-10],cols=['url(#terra)','#f5e6d3','url(#gold)','url(#turq)'];
+  s+=`<path d="M${a} Q${c} ${b}" fill="none" stroke="#7a5a2a" stroke-width="1.6" opacity=".5"/>`;
+  for(let i=0;i<=22;i++){const t=i/22,[x,y]=Q(a,c,b,t);s+=bead(x,y,7+7*Math.sin(Math.PI*t),cols[i%4]);}
+  s+=`<g transform="translate(60,52)"><line x1="150" y1="234" x2="150" y2="248" stroke="${G}" stroke-width="2"/><path d="M150 246C126 268 130 304 150 312C170 304 174 268 150 246Z" fill="url(#terra)" stroke="${G}" stroke-width="2.5"/><circle cx="150" cy="282" r="6" fill="url(#gold)"/></g>`;
+  s+=`<g transform="translate(812,40) scale(2)">${jhumka(40)}${jhumka(120)}</g>`;
+  return s+spark(600,60,14,.8)+spark(560,590,10,.7)+spark(880,560,12,.8)+spark(120,560,10,.7);
+};
+
+/* ---------- products ---------- */
+const IMG = {
+  jhumka: 'images/jhumka.jpg',
+  pearl: 'images/pearl.jpg',
+  boho: 'images/boho.jpg',
+  choker: 'images/choker.jpg',
+  charm: 'images/charm.jpg',
+  bangles: 'images/bangles.jpg',
+  macrame: 'images/macrame.jpg',
+  ring: 'images/ring.jpg',
+  anklet: 'images/anklet.jpg',
+  tikka: 'images/tikka.jpg',
+  hoops: 'images/hoops.jpg',
+  shell: 'images/shell.jpg'
+};
+const P=[
+  {id:1,name:'Terracotta Jhumka Earrings',cat:'Earrings',price:449,seasons:['monsoon','winter'],art:'jhumka',bg:['#2f5d5a','#173b3a']},
+  {id:2,name:'Pearl Drop Earrings',cat:'Earrings',price:349,seasons:['summer','winter'],art:'pearl',bg:['#e9b6c2','#c9808f']},
+  {id:3,name:'Boho Beaded Necklace',cat:'Necklaces',price:699,seasons:['summer'],art:'boho',bg:['#efdcc0','#d9b98c']},
+  {id:4,name:'Kundan Choker Set',cat:'Necklaces',price:1299,seasons:['winter'],art:'choker',bg:['#5b1a33','#2e0c1b']},
+  {id:5,name:'Charm Bracelet',cat:'Bracelets & Bangles',price:399,seasons:['summer'],art:'charm',bg:['#dccff0','#b9a2dd']},
+  {id:6,name:'Lac Bangles, Set of 6',cat:'Bracelets & Bangles',price:549,seasons:['winter'],art:'bangles',bg:['#fbeee0','#f0d3b5']},
+  {id:7,name:'Macramé Friendship Band',cat:'Bracelets & Bangles',price:199,seasons:['monsoon','summer'],art:'macrame',bg:['#cddcc3','#9db38f']},
+  {id:8,name:'Emerald Statement Ring',cat:'Rings',price:299,seasons:['winter'],art:'ring',bg:['#fbe3e8','#f1bfcb']},
+  {id:9,name:'Silver Ghungroo Anklet',cat:'Anklets',price:499,seasons:['monsoon','summer'],art:'anklet',bg:['#a9c1d9','#6f8fb0']},
+  {id:10,name:'Pearl Maang Tikka',cat:'Hair Accessories',price:599,seasons:['winter'],art:'tikka',bg:['#8b6650','#54392b']},
+  {id:11,name:'Oxidised Silver Hoops',cat:'Earrings',price:329,seasons:['monsoon'],art:'hoops',bg:['#ffd9c0','#f6b08a']},
+  {id:12,name:'Seashell Pendant Necklace',cat:'Necklaces',price:379,seasons:['summer'],art:'shell',bg:['#cfeeea','#8fd1c9']}
+];
+const CATS=['All Products','Earrings','Necklaces','Bracelets & Bangles','Rings','Anklets','Hair Accessories'];
+const SEASONS={summer:'Summer Sparkle',monsoon:'Monsoon Magic',winter:'Festive Winter'};
+const esc=s=>s.replace(/&/g,'&amp;');
+const card=p=>`<article class="pcard"><div class="pimg"><img src="${IMG[p.art]}" alt="${esc(p.name)}"><button class="add" data-add="${p.id}" aria-label="Add ${esc(p.name)} to bag">Add to bag</button></div><h3 class="pname">${esc(p.name)}</h3><p class="price">${inr(p.price)}</p></article>`;
+
+/* ---------- inject art ---------- */
+$$('[data-art]').forEach(el=>{el.innerHTML=SCENE[el.dataset.art]();});
+$('#track').innerHTML=P.slice(0,8).map(card).join('');
+$$('[data-scroll]').forEach(b=>b.addEventListener('click',()=>{const t=$('#track');t.scrollBy({left:+b.dataset.scroll*t.clientWidth*.8,behavior:'smooth'});}));
+
+/* ---------- routing ---------- */
+const TITLES={home:'Sitara | Handmade Jewellery',shop:'Shop | Sitara',season:'Seasons | Sitara',about:'About | Sitara'};
+const st={cat:'All Products',season:null,min:199,max:1299,sort:'rec'};
+function show(page){
+  if(!TITLES[page])page='home';
+  $$('.page').forEach(p=>{p.hidden=p.id!=='page-'+page;});
+  $$('.nav a').forEach(a=>{if(a.dataset.go===page)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
+  document.title=TITLES[page];
+  if(page==='shop')renderShop();
+  window.scrollTo({top:0,behavior:'auto'});
+}
+function go(page){
+  show(page);
+  try{history.pushState(null,'','#'+page);}catch(e){}
+}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-go]');
+  if(!t)return;
+  e.preventDefault();
+  if(t.dataset.go==='shop'){
+    st.season=t.dataset.season||null;
+    st.cat=t.dataset.cat||'All Products';
+    if(t.dataset.season||t.dataset.cat){st.min=199;st.max=1299;}
+  }
+  closeBag();
+  go(t.dataset.go);
+});
+window.addEventListener('popstate',()=>{let h='home';try{h=location.hash.slice(1)||'home';}catch(e){}show(h);});
+
+/* ---------- shop ---------- */
+const rmin=$('#rmin'),rmax=$('#rmax');
+function syncRange(){
+  const lo=(st.min-199)/1100*100,hi=(st.max-199)/1100*100;
+  $('#fill').style.left=lo+'%';$('#fill').style.right=(100-hi)+'%';
+  $('#lmin').textContent=inr(st.min);$('#lmax').textContent=inr(st.max);
+  rmin.value=st.min;rmax.value=st.max;
+}
+function renderGrid(){
+  let list=P.filter(p=>(st.cat==='All Products'||p.cat===st.cat)&&(!st.season||p.seasons.includes(st.season))&&p.price>=st.min&&p.price<=st.max);
+  if(st.sort==='lo')list.sort((a,b)=>a.price-b.price);
+  if(st.sort==='hi')list.sort((a,b)=>b.price-a.price);
+  if(st.sort==='az')list.sort((a,b)=>a.name.localeCompare(b.name));
+  $('#count').textContent=list.length+(list.length===1?' product':' products');
+  $('#grid').innerHTML=list.length?list.map(card).join(''):'<p class="empty">No pieces match these filters. Widen the price range or pick another category.</p>';
+  $('#chips').innerHTML=st.season?`<button class="chip-x" data-clear="season" aria-label="Remove season filter">${SEASONS[st.season]} ×</button>`:'';
+  const title=st.season?SEASONS[st.season]:st.cat;
+  $('#shopTitle').textContent=title;
+  $('#crumbNow').textContent=title;
+}
+function renderShop(){
+  $('#catlist').innerHTML=CATS.map(c=>`<button data-cat="${esc(c)}" aria-pressed="${c===st.cat}">${esc(c)}</button>`).join('');
+  $('#sort').value=st.sort;
+  syncRange();renderGrid();
+}
+$('#catlist').addEventListener('click',e=>{const b=e.target.closest('[data-cat]');if(!b)return;st.cat=b.dataset.cat;renderShop();});
+$('#chips').addEventListener('click',e=>{if(e.target.closest('[data-clear]')){st.season=null;renderGrid();}});
+$('#sort').addEventListener('change',e=>{st.sort=e.target.value;renderGrid();});
+rmin.addEventListener('input',()=>{if(+rmin.value>st.max-50)rmin.value=st.max-50;st.min=+rmin.value;syncRange();renderGrid();});
+rmax.addEventListener('input',()=>{if(+rmax.value<st.min+50)rmax.value=st.min+50;st.max=+rmax.value;syncRange();renderGrid();});
+
+/* ---------- bag ---------- */
+const cart=new Map();
+const drawer=$('#drawer'),scrim=$('#scrim');
+let lastFocus=null;
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove('show'),2200);}
+function renderBag(){
+  const items=[...cart].map(([id,q])=>({p:P.find(x=>x.id===id),q}));
+  const n=items.reduce((a,i)=>a+i.q,0),sub=items.reduce((a,i)=>a+i.p.price*i.q,0);
+  $('#bagCount').textContent=n;
+  if(!items.length){
+    $('#dBody').innerHTML='<div class="d-empty"><p>Your bag is empty.</p><a class="btn solid" href="#shop" data-go="shop">Browse the shop</a></div>';
+    $('#dFoot').hidden=true;return;
+  }
+  $('#dFoot').hidden=false;
+  $('#dBody').innerHTML='<ul>'+items.map(({p,q})=>`<li class="crow"><div class="cthumb" style="background:linear-gradient(160deg,${p.bg[0]},${p.bg[1]})"><img src="${IMG[p.art]}" alt="${esc(p.name)}"></div><div><p class="cname">${esc(p.name)}</p><p class="cprice">${inr(p.price)}</p><div class="qty"><button data-q="${p.id}:-1" aria-label="Decrease quantity">−</button><span>${q}</span><button data-q="${p.id}:1" aria-label="Increase quantity">+</button></div></div><button class="rm" data-rm="${p.id}" aria-label="Remove ${esc(p.name)}">×</button></li>`).join('')+'</ul>';
+  const left=Math.max(0,999-sub);
+  $('#dFoot').innerHTML=`<p class="ship">${left?`Add ${inr(left)} more for free shipping`:'Your order ships free'}</p><div class="bar"><i style="width:${Math.min(100,sub/999*100)}%"></i></div><div class="sum"><span>Subtotal</span><span>${inr(sub)}</span></div><button class="btn solid" id="checkout">Checkout</button>`;
+}
+function openBag(){lastFocus=document.activeElement;drawer.classList.add('open');scrim.classList.add('open');drawer.setAttribute('aria-hidden','false');$('#closeBag').focus();}
+function closeBag(){if(!drawer.classList.contains('open'))return;drawer.classList.remove('open');scrim.classList.remove('open');drawer.setAttribute('aria-hidden','true');if(lastFocus)lastFocus.focus();}
+$('#bagBtn').addEventListener('click',openBag);
+$('#closeBag').addEventListener('click',closeBag);
+scrim.addEventListener('click',closeBag);
+document.addEventListener('click',e=>{
+  const a=e.target.closest('[data-add]');
+  if(a){const id=+a.dataset.add;cart.set(id,(cart.get(id)||0)+1);renderBag();toast(P.find(p=>p.id===id).name+' added to your bag');return;}
+  const q=e.target.closest('[data-q]');
+  if(q){const [id,d]=q.dataset.q.split(':').map(Number);const v=(cart.get(id)||0)+d;if(v<1)cart.delete(id);else cart.set(id,v);renderBag();return;}
+  const r=e.target.closest('[data-rm]');
+  if(r){cart.delete(+r.dataset.rm);renderBag();return;}
+  if(e.target.id==='checkout')toast('This is a demo store, so checkout is not connected.');
+});
+renderBag();
+
+/* ---------- newsletter ---------- */
+$('#subForm').addEventListener('submit',e=>{e.preventDefault();$('#subEmail').value='';toast('Thanks for subscribing to Sitara!');});
+
+/* ---------- chat ---------- */
+const chat=$('#chat'),fab=$('#chatFab'),body=$('#chatBody');
+const REPLIES={
+  'Custom orders':'We love custom pieces! Send your idea, colours and budget to hello@sitarajewels.in. Most custom orders are ready in 7 to 10 days.',
+  'Shipping & returns':'We ship across India in 3 to 6 days. Shipping is free above ₹999, and unworn pieces can be returned within 7 days.',
+  'Jewellery care':'Keep pieces dry, store them in the pouch we send and wipe with a soft cloth. Avoid perfume and water on beads and lac.',
+  'Track my order':'Type your order number here and our team will send tracking details within a few hours.'
+};
+function say(text,who){const d=document.createElement('div');d.className='msg '+who;d.textContent=text;body.appendChild(d);body.scrollTop=body.scrollHeight;}
+function ask(q){say(q,'me');setTimeout(()=>say(REPLIES[q]||'Thanks for your message! Our team will reply at hello@sitarajewels.in within 24 hours.','bot'),450);}
+function toggleChat(open){chat.classList.toggle('open',open);fab.setAttribute('aria-expanded',open);if(open)$('#chatText').focus();}
+fab.addEventListener('click',()=>toggleChat(!chat.classList.contains('open')));
+$('#chatClose').addEventListener('click',()=>{toggleChat(false);fab.focus();});
+$('#chatChips').addEventListener('click',e=>{const b=e.target.closest('button');if(b)ask(b.textContent);});
+function sendText(){const i=$('#chatText'),v=i.value.trim();if(!v)return;i.value='';ask(v);}
+$('#chatSend').addEventListener('click',sendText);
+$('#chatText').addEventListener('keydown',e=>{if(e.key==='Enter')sendText();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeBag();if(chat.classList.contains('open'))toggleChat(false);}});
+
+/* ---------- start ---------- */
+let first='home';try{first=location.hash.slice(1)||'home';}catch(e){}
+show(first);
+})();
+</script>
+</body>
+</html>
